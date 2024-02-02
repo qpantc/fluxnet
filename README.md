@@ -1,2 +1,2 @@
 # fluxnet
-proprocess fluxnet data
+preprocess fluxnet data
