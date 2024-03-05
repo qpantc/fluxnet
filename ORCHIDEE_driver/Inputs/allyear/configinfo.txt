@@ -1,0 +1,7 @@
+name_path_weather  = /home/scratch01/quanpan/TEMPLATE_FLUXNET_DATA/FInputs/
+name_path_reanalysis = /home/surface5/vuichard/ERA5/
+name_path_out = /home/scratch01/quanpan/TEMPLATE_FLUXNET_DATA/FOutputs/
+gapmax = 6
+format_weather=fluxnet
+format_reanalysis=2D_ERA5
+flux = 1

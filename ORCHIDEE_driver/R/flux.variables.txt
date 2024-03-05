@@ -1,0 +1,222 @@
+
+## full variable list in old flux data: 
+Year,DoY,Time,DTIME,NEE_f,NEE_f_delta,GPP_f,GPP_f_delta,Reco,NEE_GPP_qc,NEE_GPP_qcOK,LE_f,LE_fqc,LE_fqcOK,H_f,H_fqc,H_fqcOK,G_f,G_fqc,G_fqcOK,Ta_f,Ta_fqc,Ta_fqcOK,Ts1_f,Ts1_fqc,Ts1_fqcOK,Ts2_f,Ts2_fqc,Ts2_fqcOK,VPD_f,VPD_fqc,VPD_fqcOK,Precip_f,Precip_fqc,Precip_fqcOK,SWC1_f,SWC1_fqc,SWC1_fqcOK,SWC2_f,SWC2_fqc,SWC2_fqcOK,WS_f,WS_fqc,WS_fqcOK,Rg_f,Rg_fqc,Rg_fqcOK,PPFD_f,PPFD_fqc,PPFD_fqcOK,Rn_f,Rn_fqc,Rn_fqcOK,Rg_pot,Rd,Rr,PPFDbc,PPFDd,PPFDr,FAPAR,LWin,LWout,SWin,SWout,WD,ustar,ZL,Rh,CO2,H2O,H2Ostor1,H2Ostor2,NEE_f_unc,NEE_fqc_unc,NEE_fqcOK_unc,LE_f_unc,LE_fqc_unc,LE_fqcOK_unc,H_f_unc,H_fqc_unc,H_fqcOK_unc,Reco_E0_100,Reco_E0_200,Reco_E0_300,wbal_clim,wbal_act,wdef_cum,Epot_viaLE_H,EpotPT_viaLE_H,Epot_viaRg,Epot_viaRn,Epot_f,Epot_flag,gsurf_viaRg,gsurf_viaRn,gsurf_viaLE_H,gsurf_f,gsurf_flag,Drain,EpotPT_viaRn,H2Ostor1_hWHC,H2Ostor2_hWHC,Drain_hWHC
+
+Year,DoY,Time,DTIME,
+
+NEE_f,NEE_f_delta,GPP_f,GPP_f_delta,Reco,NEE_GPP_qc,NEE_GPP_qcOK,
+
+LE_f,LE_fqc,LE_fqcOK,H_f,H_fqc,H_fqcOK,G_f,G_fqc,G_fqcOK,
+
+Ta_f,Ta_fqc,Ta_fqcOK,Ts1_f,Ts1_fqc,Ts1_fqcOK,Ts2_f,Ts2_fqc,Ts2_fqcOK,VPD_f,VPD_fqc,VPD_fqcOK,Precip_f,Precip_fqc,Precip_fqcOK,
+
+SWC1_f,SWC1_fqc,SWC1_fqcOK,SWC2_f,SWC2_fqc,SWC2_fqcOK,
+
+WS_f,WS_fqc,WS_fqcOK,Rg_f,Rg_fqc,Rg_fqcOK,
+
+PPFD_f,PPFD_fqc,PPFD_fqcOK,Rn_f,Rn_fqc,Rn_fqcOK,Rg_pot,Rd,Rr,
+
+PPFDbc,PPFDd,PPFDr,FAPAR,LWin,LWout,SWin,SWout,WD,
+
+
+ustar,ZL,Rh,CO2,H2O,H2Ostor1,H2Ostor2,NEE_f_unc,NEE_fqc_unc,NEE_fqcOK_unc,
+
+LE_f_unc,LE_fqc_unc,LE_fqcOK_unc,H_f_unc,H_fqc_unc,H_fqcOK_unc,Reco_E0_100,Reco_E0_200,Reco_E0_300,
+
+
+wbal_clim,wbal_act,wdef_cum,Epot_viaLE_H,EpotPT_viaLE_H,Epot_viaRg,Epot_viaRn,Epot_f,Epot_flag,
+
+gsurf_viaRg,gsurf_viaRn,gsurf_viaLE_H,gsurf_f,gsurf_flag,Drain,EpotPT_viaRn,H2Ostor1_hWHC,H2Ostor2_hWHC,Drain_hWHC
+
+
+## full variables for fluxnet 2015
+TIMESTAMP_START,TIMESTAMP_END,TA_F_MDS,TA_F_MDS_QC,TA_ERA,TA_F,TA_F_QC,SW_IN_POT,SW_IN_F_MDS,SW_IN_F_MDS_QC,SW_IN_ERA,SW_IN_F,SW_IN_F_QC,LW_IN_F_MDS,LW_IN_F_MDS_QC,LW_IN_ERA,LW_IN_F,LW_IN_F_QC,LW_IN_JSB,LW_IN_JSB_QC,LW_IN_JSB_ERA,LW_IN_JSB_F,LW_IN_JSB_F_QC,VPD_F_MDS,VPD_F_MDS_QC,VPD_ERA,VPD_F,VPD_F_QC,PA,PA_ERA,PA_F,PA_F_QC,P,P_ERA,P_F,P_F_QC,WS,WS_ERA,WS_F,WS_F_QC,WD,USTAR,RH,NETRAD,PPFD_IN,PPFD_DIF,PPFD_OUT,SW_OUT,LW_OUT,CO2_F_MDS,CO2_F_MDS_QC,TS_F_MDS_1,TS_F_MDS_2,TS_F_MDS_3,TS_F_MDS_4,TS_F_MDS_5,TS_F_MDS_6,TS_F_MDS_1_QC,TS_F_MDS_2_QC,TS_F_MDS_3_QC,TS_F_MDS_4_QC,TS_F_MDS_5_QC,TS_F_MDS_6_QC,SWC_F_MDS_1,SWC_F_MDS_2,SWC_F_MDS_3,SWC_F_MDS_4,SWC_F_MDS_5,SWC_F_MDS_1_QC,SWC_F_MDS_2_QC,SWC_F_MDS_3_QC,SWC_F_MDS_4_QC,SWC_F_MDS_5_QC,G_F_MDS,G_F_MDS_QC,LE_F_MDS,LE_F_MDS_QC,LE_CORR,LE_CORR_25,LE_CORR_75,LE_RANDUNC,LE_RANDUNC_METHOD,LE_RANDUNC_N,LE_CORR_JOINTUNC,H_F_MDS,H_F_MDS_QC,H_CORR,H_CORR_25,H_CORR_75,H_RANDUNC,H_RANDUNC_METHOD,H_RANDUNC_N,H_CORR_JOINTUNC,EBC_CF_N,EBC_CF_METHOD,NIGHT,NEE_CUT_REF,NEE_VUT_REF,NEE_CUT_REF_QC,NEE_VUT_REF_QC,NEE_CUT_REF_RANDUNC,NEE_VUT_REF_RANDUNC,NEE_CUT_REF_RANDUNC_METHOD,NEE_VUT_REF_RANDUNC_METHOD,NEE_CUT_REF_RANDUNC_N,NEE_VUT_REF_RANDUNC_N,NEE_CUT_REF_JOINTUNC,NEE_VUT_REF_JOINTUNC,NEE_CUT_USTAR50,NEE_VUT_USTAR50,NEE_CUT_USTAR50_QC,NEE_VUT_USTAR50_QC,NEE_CUT_USTAR50_RANDUNC,NEE_VUT_USTAR50_RANDUNC,NEE_CUT_USTAR50_RANDUNC_METHOD,NEE_VUT_USTAR50_RANDUNC_METHOD,NEE_CUT_USTAR50_RANDUNC_N,NEE_VUT_USTAR50_RANDUNC_N,NEE_CUT_USTAR50_JOINTUNC,NEE_VUT_USTAR50_JOINTUNC,NEE_CUT_MEAN,NEE_VUT_MEAN,NEE_CUT_MEAN_QC,NEE_VUT_MEAN_QC,NEE_CUT_SE,NEE_VUT_SE,NEE_CUT_05,NEE_CUT_16,NEE_CUT_25,NEE_CUT_50,NEE_CUT_75,NEE_CUT_84,NEE_CUT_95,NEE_VUT_05,NEE_VUT_16,NEE_VUT_25,NEE_VUT_50,NEE_VUT_75,NEE_VUT_84,NEE_VUT_95,NEE_CUT_05_QC,NEE_CUT_16_QC,NEE_CUT_25_QC,NEE_CUT_50_QC,NEE_CUT_75_QC,NEE_CUT_84_QC,NEE_CUT_95_QC,NEE_VUT_05_QC,NEE_VUT_16_QC,NEE_VUT_25_QC,NEE_VUT_50_QC,NEE_VUT_75_QC,NEE_VUT_84_QC,NEE_VUT_95_QC,RECO_NT_VUT_REF,RECO_NT_VUT_USTAR50,RECO_NT_VUT_MEAN,RECO_NT_VUT_SE,RECO_NT_VUT_05,RECO_NT_VUT_16,RECO_NT_VUT_25,RECO_NT_VUT_50,RECO_NT_VUT_75,RECO_NT_VUT_84,RECO_NT_VUT_95,RECO_NT_CUT_REF,RECO_NT_CUT_USTAR50,RECO_NT_CUT_MEAN,RECO_NT_CUT_SE,RECO_NT_CUT_05,RECO_NT_CUT_16,RECO_NT_CUT_25,RECO_NT_CUT_50,RECO_NT_CUT_75,RECO_NT_CUT_84,RECO_NT_CUT_95,GPP_NT_VUT_REF,GPP_NT_VUT_USTAR50,GPP_NT_VUT_MEAN,GPP_NT_VUT_SE,GPP_NT_VUT_05,GPP_NT_VUT_16,GPP_NT_VUT_25,GPP_NT_VUT_50,GPP_NT_VUT_75,GPP_NT_VUT_84,GPP_NT_VUT_95,GPP_NT_CUT_REF,GPP_NT_CUT_USTAR50,GPP_NT_CUT_MEAN,GPP_NT_CUT_SE,GPP_NT_CUT_05,GPP_NT_CUT_16,GPP_NT_CUT_25,GPP_NT_CUT_50,GPP_NT_CUT_75,GPP_NT_CUT_84,GPP_NT_CUT_95,RECO_DT_VUT_REF,RECO_DT_VUT_USTAR50,RECO_DT_VUT_MEAN,RECO_DT_VUT_SE,RECO_DT_VUT_05,RECO_DT_VUT_16,RECO_DT_VUT_25,RECO_DT_VUT_50,RECO_DT_VUT_75,RECO_DT_VUT_84,RECO_DT_VUT_95,RECO_DT_CUT_REF,RECO_DT_CUT_USTAR50,RECO_DT_CUT_MEAN,RECO_DT_CUT_SE,RECO_DT_CUT_05,RECO_DT_CUT_16,RECO_DT_CUT_25,RECO_DT_CUT_50,RECO_DT_CUT_75,RECO_DT_CUT_84,RECO_DT_CUT_95,GPP_DT_VUT_REF,GPP_DT_VUT_USTAR50,GPP_DT_VUT_MEAN,GPP_DT_VUT_SE,GPP_DT_VUT_05,GPP_DT_VUT_16,GPP_DT_VUT_25,GPP_DT_VUT_50,GPP_DT_VUT_75,GPP_DT_VUT_84,GPP_DT_VUT_95,GPP_DT_CUT_REF,GPP_DT_CUT_USTAR50,GPP_DT_CUT_MEAN,GPP_DT_CUT_SE,GPP_DT_CUT_05,GPP_DT_CUT_16,GPP_DT_CUT_25,GPP_DT_CUT_50,GPP_DT_CUT_75,GPP_DT_CUT_84,GPP_DT_CUT_95,RECO_SR,RECO_SR_N
+
+
+
+double tstep(tstep) ;
+        tstep:origin = "2000-01-01 00:00:00" ;
+        tstep:units = "seconds since 2000-01-01 00:00:00" ;
+        tstep:calendar = "gregorian" ;
+double lev(lev) ;
+        lev:units = "m" ;
+        lev:long_name = "Vertical levels" ;
+double lat(lat) ;
+        lat:bounds = "bounds_lat" ;
+        lat:units = "degrees_north" ;
+        lat:long_name = "Latitude" ;
+        lat:axis = "Y" ;
+double bounds_lat(lat, bound) ;
+double lon(lon) ;
+        lon:bounds = "bounds_lon" ;
+        lon:units = "degrees_east" ;
+        lon:long_name = "Longitude" ;
+        lon:axis = "X" ;
+        lon:modulo = 360. ;
+        lon:topology = "circular" ;
+double bounds_lon(lon, bound) ;
+double Tair(tstep, lev, lat, lon) ;
+        Tair:_FillValue = 1.e+20 ;
+        Tair:missing_value = 1.e+20 ;
+        Tair:long_name = "Near surface air temperature" ;
+        Tair:units = "K" ;
+double Qair(tstep, lev, lat, lon) ;
+        Qair:_FillValue = 1.e+20 ;
+        Qair:missing_value = 1.e+20 ;
+        Qair:long_name = "Near Surface specific humidity" ;
+        Qair:units = "kg/kg" ;
+double PSurf(tstep, lat, lon) ;
+        PSurf:_FillValue = 1.e+20 ;
+        PSurf:missing_value = 1.e+20 ;
+        PSurf:long_name = "Surface pressure" ;
+        PSurf:units = "Pa" ;
+double Wind_N(tstep, lev, lat, lon) ;
+        Wind_N:_FillValue = 1.e+20 ;
+        Wind_N:missing_value = 1.e+20 ;
+        Wind_N:long_name = "Near surface northward wind component" ;
+        Wind_N:units = "m/s" ;
+double Wind_E(tstep, lev, lat, lon) ;
+        Wind_E:_FillValue = 1.e+20 ;
+        Wind_E:missing_value = 1.e+20 ;
+        Wind_E:long_name = "Near surface eastward wind component" ;
+        Wind_E:units = "m/s" ;
+double Rainf(tstep, lat, lon) ;
+        Rainf:_FillValue = 1.e+20 ;
+        Rainf:missing_value = 1.e+20 ;
+        Rainf:long_name = "Rainfall rate" ;
+        Rainf:units = "kg/m^2s" ;
+double Snowf(tstep, lat, lon) ;
+        Snowf:_FillValue = 1.e+20 ;
+        Snowf:missing_value = 1.e+20 ;
+        Snowf:long_name = "Snowfall rate" ;
+        Snowf:units = "kg/m^2s" ;
+double SWdown(tstep, lat, lon) ;
+        SWdown:_FillValue = 1.e+20 ;
+        SWdown:missing_value = 1.e+20 ;
+        SWdown:long_name = "Surface incident shortwave radiation" ;
+        SWdown:units = "W/m^2" ;
+double LWdown(tstep, lat, lon) ;
+        LWdown:_FillValue = 1.e+20 ;
+        LWdown:missing_value = 1.e+20 ;
+        LWdown:long_name = "Surface incident longwave radiation" ;
+        LWdown:units = "W/m^2" ;
+int tair_qc(tstep, lev, lat, lon) ;
+        tair_qc:_FillValue = -9999 ;
+        tair_qc:missing_value = -9999 ;
+        tair_qc:long_name = "Quality check for Tair" ;
+        tair_qc:units = "-" ;
+int qair_qc(tstep, lev, lat, lon) ;
+        qair_qc:_FillValue = -9999 ;
+        qair_qc:missing_value = -9999 ;
+        qair_qc:long_name = "Quality check for qair" ;
+        qair_qc:units = "-" ;
+int psurf_qc(tstep, lat, lon) ;
+        psurf_qc:_FillValue = -9999 ;
+        psurf_qc:missing_value = -9999 ;
+        psurf_qc:long_name = "quality check for Psurf" ;
+        psurf_qc:units = "-" ;
+int wind_n_qc(tstep, lev, lat, lon) ;
+        wind_n_qc:_FillValue = -9999 ;
+        wind_n_qc:missing_value = -9999 ;
+        wind_n_qc:long_name = "Quality check for wind_n" ;
+        wind_n_qc:units = "-" ;
+double Wind_e_qc(tstep, lev, lat, lon) ;
+        Wind_e_qc:_FillValue = -9999. ;
+        Wind_e_qc:missing_value = -9999. ;
+        Wind_e_qc:long_name = "Quality check for wind_e" ;
+        Wind_e_qc:units = "-" ;
+int Rainf_qc(tstep, lat, lon) ;
+        Rainf_qc:_FillValue = -9999 ;
+        Rainf_qc:missing_value = -9999 ;
+        Rainf_qc:long_name = "Quality check for Rainf" ;
+        Rainf_qc:units = "-" ;
+int Snowf_qc(tstep, lat, lon) ;
+        Snowf_qc:_FillValue = -9999 ;
+        Snowf_qc:missing_value = -9999 ;
+        Snowf_qc:long_name = "Quality check for Snowf" ;
+        Snowf_qc:units = "-" ;
+int SWdown_qc(tstep, lat, lon) ;
+        SWdown_qc:_FillValue = -9999 ;
+        SWdown_qc:missing_value = -9999 ;
+        SWdown_qc:long_name = "Quality check for Swdown" ;
+        SWdown_qc:units = "-" ;
+int LWdown_qc(tstep, lat, lon) ;
+        LWdown_qc:_FillValue = -9999 ;
+        LWdown_qc:missing_value = -9999 ;
+        LWdown_qc:long_name = "Quality check for Lwdown" ;
+        LWdown_qc:units = "-" ;
+double NEE(tstep, lat, lon) ;
+        NEE:_FillValue = -9999. ;
+        NEE:missing_value = -9999. ;
+        NEE:long_name = "Net Ecosystem Exchange" ;
+        NEE:units = "gC/m2/tstep" ;
+double GPP(tstep, lat, lon) ;
+        GPP:_FillValue = -9999. ;
+        GPP:missing_value = -9999. ;
+        GPP:long_name = "Gross Primary Production" ;
+        GPP:units = "gC/m2/tstep" ;
+double Reco(tstep, lat, lon) ;
+        Reco:_FillValue = -9999. ;
+        Reco:missing_value = -9999. ;
+        Reco:long_name = "Ecosystem Respiration" ;
+        Reco:units = "gC/m2/tstep" ;
+double LE_f(tstep, lat, lon) ;
+        LE_f:_FillValue = -9999. ;
+        LE_f:missing_value = -9999. ;
+        LE_f:long_name = "Latent Heat Flux" ;
+        LE_f:units = "W/m2" ;
+double H_f(tstep, lat, lon) ;
+        H_f:_FillValue = -9999. ;
+        H_f:missing_value = -9999. ;
+        H_f:long_name = "Sensible Heat Flux" ;
+        H_f:units = "W/m2" ;
+double G_f(tstep, lat, lon) ;
+        G_f:_FillValue = -9999. ;
+        G_f:missing_value = -9999. ;
+        G_f:long_name = "Soil Heat Flux" ;
+        G_f:units = "W/m2" ;
+double Ts1_f(tstep, lat, lon) ;
+        Ts1_f:_FillValue = -9999. ;
+        Ts1_f:missing_value = -9999. ;
+        Ts1_f:long_name = "Soil Temperature (upper layer)" ;
+        Ts1_f:units = "degC" ;
+double Ts2_f(tstep, lat, lon) ;
+        Ts2_f:_FillValue = -9999. ;
+        Ts2_f:missing_value = -9999. ;
+        Ts2_f:long_name = "Soil Temperature (lower layer)" ;
+        Ts2_f:units = "degC" ;
+double SWC1_f(tstep, lat, lon) ;
+        SWC1_f:_FillValue = -9999. ;
+        SWC1_f:missing_value = -9999. ;
+        SWC1_f:long_name = "Soil Water Content (upper layer)" ;
+        SWC1_f:units = "VOL%" ;
+double SWC2_f(tstep, lat, lon) ;
+        SWC2_f:_FillValue = -9999. ;
+        SWC2_f:missing_value = -9999. ;
+        SWC2_f:long_name = "Soil Water Content (lower layer)" ;
+        SWC2_f:units = "VOL%" ;
+double PPFD_f(tstep, lat, lon) ;
+        PPFD_f:_FillValue = -9999. ;
+        PPFD_f:missing_value = -9999. ;
+        PPFD_f:long_name = "Photosynthetic Photon Flux Density" ;
+        PPFD_f:units = "umol m-2 s-1" ;
+double Rn_f(tstep, lat, lon) ;
+        Rn_f:_FillValue = -9999. ;
+        Rn_f:missing_value = -9999. ;
+        Rn_f:long_name = "Net Radiation" ;
+        Rn_f:units = "W m-2" ;
+double FAPAR(tstep, lat, lon) ;
+        FAPAR:_FillValue = -9999. ;
+        FAPAR:missing_value = -9999. ;
+        FAPAR:long_name = "Fraction of Absorbed Photosynthetically Active Radiation" ;
+        FAPAR:units = "%" ;
+double Epot_f(tstep, lat, lon) ;
+        Epot_f:_FillValue = -9999. ;
+        Epot_f:missing_value = -9999. ;
+        Epot_f:long_name = "Potential Evapotranspiration" ;
+        Epot_f:units = "mm/hour" ;
+double gsurf_f(tstep, lat, lon) ;
+        gsurf_f:_FillValue = -9999. ;
+        gsurf_f:missing_value = -9999. ;
+        gsurf_f:long_name = "Canopy conductance" ;
+        gsurf_f:units = "mmol m-2 s-1" ;

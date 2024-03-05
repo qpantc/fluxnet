@@ -1,0 +1,285 @@
+---
+title: "Flux flux_selected introducing"
+date: "02/02/2024"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+### Step 0: load your library flux_selectedset 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+library(dplyr)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+library(corrplot)
+library(psych)
+# rm(list = ls())
+```
+
+### Step 1: Explore your flux_selectedset 
+flux_selected cleanup, units conversion; typical ranges, annual sums and averages  
+
+**Meteorological flux_selected:** 
+TIMEKEEPING
+TIMESTAMP - Time of the measurement (YEAR, MONTH, and DAY) ========= Time(TIMESTAMP)
+
+MICROMETEOROLOGICAL
+TA_F_MDS - Air temperature (°C) ================================     Air temperature(TA)
+SW_IN_F - Incoming shortwave radiation, SWDOWN (W/m²) ====== Shortwave radiation(SW)
+LW_IN_F - Incoming longwave radiation, LWDOWN (W/m²) ======== Longwave radiation(LW)
+VPD_F - Vapor pressure deficit, VPD (hPa) ============== Vapor Pressure Deficit(VPD)
+RH - Relative humidity(RH)
+Atmospheric pressure(PA)
+P_F - Rainfall, RAIN (mm) ======================================== Precipitation(P)
+WS_F - Windspeed, WIND (m/s) ======================================== Wind speed(WS)
+WD - Wind direction(WD)
+PPFD_IN - Photosynthetic photon flux density (PPFD)
+TS_F_MDS_# - Soil temperature, TSOIL (°C) =============== Soil temperature(TS) 1最浅
+
+ENERGY PROCESSING
+NETRAD - Net radiation, RN (W/m²) ============================ Net radiation(NETRAD)
+G_F_MDS - Soil heat flux, GF (W/m²) ============================ Soil heat flux(G_F)
+LE_F_MDS - Latent heat flux QLE (W/m²) ====================== Latent heat flux(LE_F)
+H_F_MDS - Sensible heat flux QH (W/m²) ===================== Sensible heat flux(H_F)
+
+NET ECOSYSTEM EXCHANGE 
+NEE_VUT_REF - Net Ecosystem Exchange, NEE (gC/m²/d) ================= Net Ecosystem Exchange(NEE_VUT_REF)
+GPP_NT_VUT_REF/GPP_DT_VUT_REF - Gross primary production, GPP (gC/m²/d)  ================= Gross Primary Production(GPP_NT_VUT_REF)
+RECO_NT_VUT_REF/RECO_DT_VUT_REF - Ecosystem respiration, Reco (gC/m²/d)  ================= Ecosystem Respiration(RECO_NT_VUT_REF)
+注意生态系统GPP和呼吸有日间和夜间两种计算方法
+```{r Load your flux_selected}
+flux_guy <- read.csv('/Users/quan/projects/Trait_Orchidee/Flux/Fluxdata/FLX_GF-Guy_FLUXNET2015_FULLSET_2004-2020_Evergreen_Broadleaf_Forests/FLX_GF-Guy_FLUXNET2015_FULLSET_DD_2004-2020_beta-3.csv')
+flux_Bra <- read.csv('/Users/quan/projects/Trait_Orchidee/Flux/Fluxdata/FLX_BE-Bra_FLUXNET2015_FULLSET_1996-2020_Evergreen_Needleleaf_Forests/FLX_BE-Bra_FLUXNET2015_FULLSET_DD_1996-2020_beta-3.csv')
+
+vars_short <- c("Time","T","T_NIGHT","T_DAY","SWDOWN","LWDOWN",
+                "VPD","RAIN","WIND","RN","TSOIL","GF","QLE","QH",
+                "NEE","RECO","GPP") 
+vars_long <- c("TIMESTAMP","TA_F","TA_F_NIGHT","TA_F_DAY","SW_IN_F","LW_IN_F",
+               "VPD_F","P_F","WS_F",'NETRAD','TS_F_MDS_1','G_F_MDS','LE_F_MDS','H_F_MDS',
+               'NEE_VUT_REF','RECO_DT_VUT_REF','GPP_DT_VUT_REF')
+vars_long[!(vars_long %in% colnames(flux_Bra))]
+# sort(colnames(flux_Bra))
+flux_selected <- flux_Bra[vars_long]
+colnames(flux_selected) <- vars_short
+```
+
+**Additional helpful Metaflux_selected:**
+
+- World map of Köppen-Geiger climate classification (PDF)
+- Site information: Find from [fluxnet sites list](https://fluxnet.org/sites/site-list-and-pages) or just google the name of your site
+
+- Check and filter missing (NA) or impossible (e.g. very larges, -9999) values
+```{r}
+## Step 1
+# Filter weird values
+vars <- c("T","T_NIGHT","T_DAY","SWDOWN","LWDOWN" ,"VPD","RAIN","WIND","RN","TSOIL","GF","QLE","QH","NEE","RECO","GPP") 
+for (var in vars){
+  flux_selected[[var]][abs(flux_selected[[var]])>1e20] <- NA
+  flux_selected[[var]][(flux_selected[[var]])< -5000] <- NA
+}
+
+
+```
+
+- Convert variables into easy interpretable units (land fluxes into kgC /m²/year or tC /ha/year)
+Net Ecosystem Exchange, NEE (gC/m²/d); Gross primary production, GPP (gC/m²/d); Ecosystem respiration, Reco (gC/m²/d)
+```{r}
+# Conversions
+flux_selected.converted <- flux_selected %>% 
+  mutate(Time = as.Date(as.character(Time),"%Y%m%d"),
+          year = year(Time),month= month(Time),yday = yday(Time)) 
+
+flux_selected.converted$GPP <- flux_selected.converted$GPP * 365 * 10000/1000000
+flux_selected.converted$NEE <- flux_selected.converted$NEE * 365 * 10000/1000000
+flux_selected.converted$RECO <- flux_selected.converted$RECO * 365 * 10000/1000000
+```
+
+- Calculate the minimal and maximal value for each variable, as a quick check
+```{r}
+# Min and max values
+flux_selected.converted %>% dplyr::select(-c("Time","year","yday")) %>% summarise_all(min, na.rm = TRUE)
+flux_selected.converted %>% dplyr::select(-c("Time","year","yday")) %>% summarise_all(max, na.rm = TRUE)
+```
+
+- Calculate annual sum of precipitation, and the annual mean for each other variable. 
+```{r}
+# Sum for Precip, mean for the rest
+flux_selected.converted %>% dplyr::select(c("year","RAIN","yday")) %>% group_by(year) %>% summarise(Precip = sum(RAIN, na.rm = TRUE))
+flux_selected.converted %>% dplyr::select(-c("RAIN","Time","yday")) %>% group_by(year) %>% summarise_all(mean, na.rm = TRUE)
+
+flux_selected.converted %>% dplyr::select(c("year","RAIN","yday")) %>% group_by(year) %>% summarise(Precip = sum(RAIN)) %>% pull(Precip) %>% mean(na.rm = TRUE)
+flux_selected.converted %>% dplyr::select(-c("RAIN","Time","yday","year")) %>% summarise_all(mean, na.rm = TRUE)
+
+```
+
+
+### Step 2: Mean annual cycles
+Seasonal cycle, patterns, extreme events 
+
+```{r}
+flux_selected.cycle <- flux_selected.converted %>% dplyr::select(-c("year","Time")) %>% group_by(yday) %>% summarise_all(mean,na.rm = TRUE)
+flux_selected.cycle.long <- flux_selected.cycle %>% pivot_longer(cols = -c("yday"),
+                                               names_to = "var",
+                                               values_to = "value")
+
+flux_selected.cycle.long.years <- flux_selected.converted %>% dplyr::select(-c("Time"))%>% group_by(year,yday) %>% summarise_all(mean,na.rm = TRUE) %>% pivot_longer(cols = -c("yday","year"),
+                                                                                               names_to = "var",
+                                                                                               values_to = "value")
+```
+
+- **Plot 1**: Produce mean seasonal cycle graphs (= you compile your flux_selected to obtain one average year) for each meteorological variable (in a single plot)
+- Check the correspondence of these plots: do patterns concur or differ? Why? Try to explain the causal relationship. 
+```{r  Plot 1}
+# Plot 1
+ggplot(data = flux_selected.cycle.long %>% 
+         dplyr::filter(var %in%  c("T","T_NIGHT","T_DAY","SWDOWN","LWDOWN" ,"VPD","RAIN","WIND","RN","TSOIL"))) +
+  geom_line(aes(x = yday,y = value)) +
+    geom_smooth(aes(x = yday,y = value),colour="red", size=1, method="loess",
+              span=1/5, se=FALSE) +
+  facet_wrap(~var,scales = "free") +
+
+  theme_bw()
+
+```
+
+- **Plot 2**: Compare your average year with every single year of flux_selected. Are there any extreme events in your flux_selected? Document it.
+```{r  Plot 2}
+# Plot 2 
+ggplot(data = flux_selected.cycle.long %>% dplyr::filter(var %in% c("T","T_NIGHT","T_DAY","SWDOWN","LWDOWN" ,"VPD","RAIN","WIND","RN","TSOIL"))) +
+  geom_line(data = flux_selected.cycle.long.years  %>% dplyr::filter(var %in% c("T","T_NIGHT","T_DAY","SWDOWN","LWDOWN" ,"VPD","RAIN","WIND","RN","TSOIL")),
+            aes(x = yday,y = value,group = as.factor(year)),color = "grey") +
+  geom_line(aes(x = yday,y = value)) +
+  facet_wrap(~var,scales = "free") +
+  theme_bw()
+```
+
+- **Plot 3**: Using bar plots, plot the average precipitation yearly cycle
+```{r  Plot 3}
+ggplot(flux_selected.cycle,aes(x=yday,y=RAIN)) +
+   geom_col() +
+  scale_x_continuous(breaks = seq(1,365,30)) +
+  theme_bw()
+```
+
+
+### Step 3: Surface energy balance
+Radiation balance, energy closure, Bowen ratio 
+
+- **Plot 4**: Plot mean annual cycles for Rn, Qh, Qle, GF (W/m²), in one graph  and interpret the annual cycles.
+```{r }
+# plot 4
+ggplot(data = flux_selected.cycle.long %>% dplyr::filter(var %in% c("QLE","QH","RN","GF"))) +
+  geom_line(aes(x = yday,y = value,color = as.factor(var))) +
+  theme_bw()
+```
+
+- **Plot 5**: Scatterplot of energy balance (Qh+Qle vs. Rn-GF) (W/m²), select only 1 year of your flux_selectedset for this plot, fit a linear regression line (include equation + R²). Compare with 1:1 line.
+```{r}
+# Plot 5 
+flux_selected.balance <- flux_selected.cycle.long %>% 
+  filter(var %in% c("QLE","QH","RN","GF")) %>% pivot_wider(names_from = var,values_from = value) %>% 
+  mutate(y = QLE + QH, x = RN - GF)
+
+ggplot(data = flux_selected.balance,
+       aes(x = x,y = y)) +
+  geom_point() +
+  geom_abline(slope = 1,color = "black",linetype = 2) +
+  labs(x = "Rn - G (W/m²)",
+       y = "Qle + Qh (W/m²)") +
+  geom_smooth(method='lm', formula= y~x,se = FALSE,color = "red") + 
+  theme_bw()
+
+LM <- lm(y ~ x, data = flux_selected.balance,)
+coef(LM)
+summary((LM))$r.squared
+```
+- Analyze the closure of the energy balance. How much is the energy gap? What causes this? Did you expect such magnitude? Refer to literature in your answer.
+```{r}
+hist(flux_selected.balance$QH/flux_selected.balance$QLE)
+```
+
+- Calculate the Bowen ratio (= Qh/Qle).
+```{r}
+(flux_selected.balance$QH/flux_selected.balance$QLE) %>% mean()
+```
+
+
+### Step 4: Carbon fluxes
+Carbon balance, carbon closure
+
+- **Plot 6**: mean annual cycles for GPP, Reco and NEE, all in one plot
+```{r}
+ggplot(data = flux_selected.cycle.long %>% dplyr::filter(var %in% c("GPP","NEE","RECO"))) +
+  geom_line(aes(x = yday,y = value,color = as.factor(var))) +
+  theme_bw()
+```
+
+- Interpret the annual cycles. Is the site more a carbon source (NEE > 0) or a carbon sink (NEE < 0)?
+```{r}
+ggplot(data = flux_selected.cycle %>% mutate(balance = GPP - RECO - NEE)) +
+  geom_histogram(aes(x = balance)) +
+  theme_bw()
+
+ggplot(data = flux_selected.converted,
+       aes(x = GPP - RECO,y = -NEE,color = as.factor(year))) +
+  geom_point() +
+  geom_abline(slope = 1,color = "black",linetype = 2) +
+  geom_smooth(method='lm', formula= y~x,se = FALSE,color = "red") + 
+  theme_bw()
+
+coef(lm(data = flux_selected.converted %>% mutate(NEP = - GPP + RECO),
+        formula =  NEE ~ NEP))
+
+```
+
+
+### Step 5: Interpretation
+Climate type, links between variables, relation with ecosystem 
+
+- **Plot 7**: Are there links between different meteorological variables?
+```{r}
+flux_selected_corr <- flux_selected.converted %>% dplyr::select(-c("Time","year","yday"))
+M <- cor(flux_selected_corr,use="complete.obs")
+corrplot(M, method="pie",type = "upper")
+
+p.mat <- cor.mtest(flux_selected_corr)
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+corrplot(M, method="color",  
+         type="upper",
+         addCoef.col = "black",
+         tl.col="black", tl.srt=45,
+         diag=FALSE)
+```
+
+- **Plot 8**: Are some of the land fluxes (GPP, Reco, NEE) correlated with one or several meteorological variables?
+- Compare climate type with that on other locations (e.g. other groups, textbook examples, papers, ...)
+- Comment on extreme events, inter-annual variability, anomalies, …
+- What is the relation between the climate and the site characteristics? What is the role of vegetation in this climate system?
+- Any surprising details?
+```{r}
+# Plot 8
+flux_selected_corr2 <- flux_selected.cycle %>% dplyr::select(-c("yday")) %>% dplyr::select(c("GPP","RECO","NEE","T_DAY","SWDOWN"))
+pairs.panels(flux_selected_corr2, 
+             method = "pearson", # correlation method
+             hist.col = "#00AFBB",
+             density = TRUE,  # show density plots
+             ellipses = FALSE )
+
+```
+
+
+
+### Useful R cheatsheets
+1. Summary of Rstudio functions: https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf
+2. R basic commands: https://raw.githubusercontent.com/rstudio/cheatsheets/master/base-r.pdf
+3. flux_selected visualization: https://raw.githubusercontent.com/rstudio/cheatsheets/master/flux_selected-visualization-2.1.pdf
+4. Work with dates: https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf
+5. More R cheatsheets: https://rstudio.com/resources/cheatsheets/
+
+
